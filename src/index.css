@@ -1,0 +1,324 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    background-color: #EDEDE9;
+    color: #3D3732;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+}
+
+button:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+input:focus-visible,
+[role="button"]:focus-visible {
+  outline: 2px solid #746250;
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Surface tokens for Settings & Diff Viewer */
+:root {
+  --surface-1: #F5EBE0;
+  --surface-2: #EDEDE9;
+  --surface-3: #E3D5CA;
+  --text-fg: #3D3732;
+  --text-fg-muted: #766C63;
+  --text-fg-dim: #988B80;
+  --color-border: #D6CCC2;
+  --color-accent: #746250;
+  --accent-dim: rgba(116, 98, 80, 0.1);
+  --accent-border: rgba(116, 98, 80, 0.25);
+  --color-danger: #EF4444;
+  --danger-dim: rgba(239, 68, 68, 0.1);
+  --danger-border: rgba(239, 68, 68, 0.25);
+  --color-warning: #F59E0B;
+}
+
+html.dark {
+  --surface-1: #37312C;
+  --surface-2: #413A34;
+  --surface-3: #494138;
+  --text-fg: #F5EBE0;
+  --text-fg-muted: #D6CCC2;
+  --text-fg-dim: #BBAE9F;
+  --color-border: #5B5046;
+  --color-accent: #D5BDAF;
+  --accent-dim: rgba(213, 189, 175, 0.15);
+  --accent-border: rgba(213, 189, 175, 0.3);
+  --color-danger: #F87171;
+  --danger-dim: rgba(248, 113, 113, 0.15);
+  --danger-border: rgba(248, 113, 113, 0.3);
+  --color-warning: #FBBF24;
+}
+
+.bg-surface-1 { background-color: var(--surface-1); }
+.bg-surface-2 { background-color: var(--surface-2); }
+.bg-surface-3 { background-color: var(--surface-3); }
+.text-foreground { color: var(--text-fg); }
+.text-foreground-muted { color: var(--text-fg-muted); }
+.text-foreground-dim { color: var(--text-fg-dim); }
+.border-border { border-color: var(--color-border); }
+.text-accent { color: var(--color-accent); }
+.bg-accent-dim { background-color: var(--accent-dim); }
+.border-accent-border { border-color: var(--accent-border); }
+.text-danger { color: var(--color-danger); }
+.bg-danger-dim { background-color: var(--danger-dim); }
+.border-danger-border { border-color: var(--danger-border); }
+.text-warning { color: var(--color-warning); }
+
+/* ==========================================================
+   Dark Mode Overrides
+   Activated when html has class 'dark'
+   ========================================================== */
+html.dark {
+  color-scheme: dark;
+}
+
+html.dark body {
+  background-color: #292521;
+  color: #F5EBE0;
+}
+
+/* Dark mode surface & card background transforms */
+.dark .bg-white {
+  background-color: #37312C !important;
+}
+
+.bg-white { background-color: #F5EBE0; }
+.bg-white\/80 { background-color: rgb(245 235 224 / 0.8); }
+.bg-white\/90 { background-color: rgb(245 235 224 / 0.9); }
+
+button, a, [role="button"], .shadow-card {
+  transition: color 180ms ease, background-color 180ms ease, border-color 180ms ease,
+    box-shadow 220ms ease, transform 220ms cubic-bezier(.2,.7,.2,1);
+}
+button:not(:disabled):active, [role="button"]:active { transform: scale(.985); }
+.page-enter { animation: page-enter 420ms cubic-bezier(.2,.7,.2,1) both; }
+@keyframes page-enter {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.dark .bg-\[\#F5F7FF\] {
+  background-color: #0B0F19 !important;
+}
+
+.dark .bg-\[\#F8FAFF\],
+.dark .bg-\[\#F9FAFB\],
+.dark .bg-\[\#EEF2FA\] {
+  background-color: #182238 !important;
+}
+
+.dark .bg-\[\#F0F4FF\],
+.dark .bg-\[\#EBF2FE\] {
+  background-color: #162035 !important;
+}
+
+.dark .bg-\[\#E8EBFF\] {
+  background-color: #1E293B !important;
+}
+
+.dark .bg-\[\#F3F4F6\] {
+  background-color: #1E293B !important;
+}
+
+.dark .bg-\[\#DDF8EB\] {
+  background-color: rgba(6, 78, 59, 0.4) !important;
+}
+
+.dark .bg-\[\#FFF0DC\],
+.dark .bg-\[\#FFF2E2\] {
+  background-color: rgba(120, 53, 15, 0.35) !important;
+}
+
+.dark .bg-\[\#FFE4E6\] {
+  background-color: rgba(136, 19, 55, 0.4) !important;
+}
+
+.dark .bg-\[\#CCFBF1\] {
+  background-color: rgba(19, 78, 74, 0.4) !important;
+}
+
+.dark .border-\[\#FDE68A\] {
+  border-color: rgba(245, 158, 11, 0.4) !important;
+}
+
+.dark svg path[fill="#DCE7FC"] {
+  fill: #1A2640 !important;
+}
+
+/* Hero Section gradient in dark mode */
+.dark .from-white {
+  --tw-gradient-from: #131B2E var(--tw-gradient-from-position) !important;
+}
+.dark .via-\[\#F8F9FE\] {
+  --tw-gradient-via: #162035 var(--tw-gradient-via-position) !important;
+}
+.dark .to-\[\#EEF3FF\] {
+  --tw-gradient-to: #1A2640 var(--tw-gradient-to-position) !important;
+}
+
+/* Subtle Borders */
+.dark .border-\[\#E3E8F5\],
+.dark .border-\[\#EEF2FA\],
+.dark .border-\[\#DCE5FA\],
+.dark .border-\[\#DCE7FC\],
+.dark .border-\[\#E0E7FF\] {
+  border-color: #1F293D !important;
+}
+
+/* Text Colors */
+.dark .text-\[\#111827\] {
+  color: #F8FAFC !important;
+}
+
+.dark .text-\[\#1F2937\] {
+  color: #F1F5F9 !important;
+}
+
+.dark .text-\[\#374151\] {
+  color: #CBD5E1 !important;
+}
+
+.dark .text-\[\#4B5563\] {
+  color: #94A3B8 !important;
+}
+
+.dark .text-\[\#6B7280\],
+.dark .text-\[\#667085\],
+.dark .text-\[\#8A94A6\] {
+  color: #94A3B8 !important;
+}
+
+.dark .text-\[\#9CA3AF\] {
+  color: #64748B !important;
+}
+
+/* Hover States in Dark Mode */
+.dark .hover\:bg-\[\#F5F7FF\]:hover,
+.dark .hover\:bg-\[\#F8FAFF\]:hover,
+.dark .hover\:bg-\[\#F9FAFB\]:hover {
+  background-color: #1C2742 !important;
+}
+
+.dark .hover\:text-\[\#111827\]:hover {
+  color: #FFFFFF !important;
+}
+
+/* Form Controls & Inputs */
+.dark select {
+  background-color: #131B2E !important;
+  color: #F8FAFC !important;
+  border-color: #1F293D !important;
+}
+
+.dark select option {
+  background-color: #131B2E !important;
+  color: #F8FAFC !important;
+}
+
+.dark textarea {
+  color: #F8FAFC !important;
+}
+
+/* Donut chart ring in dark mode */
+.dark circle[stroke="#E8EBFF"] {
+  stroke: #1F293D !important;
+}
+
+/* Entity mark chips in Dark Mode - High contrast & luminous */
+.dark mark {
+  filter: saturate(1.2) brightness(0.95);
+}
+
+.dark .dark-token-email {
+  background-color: rgba(30, 58, 138, 0.45) !important;
+  color: #93C5FD !important;
+  border-color: rgba(59, 130, 246, 0.45) !important;
+}
+
+.dark .dark-token-phone {
+  background-color: rgba(6, 78, 59, 0.45) !important;
+  color: #6EE7B7 !important;
+  border-color: rgba(16, 185, 129, 0.45) !important;
+}
+
+.dark .dark-token-pan {
+  background-color: rgba(120, 53, 15, 0.45) !important;
+  color: #FCD34D !important;
+  border-color: rgba(245, 158, 11, 0.45) !important;
+}
+
+.dark .dark-token-aadhaar {
+  background-color: rgba(124, 45, 18, 0.45) !important;
+  color: #FDBA74 !important;
+  border-color: rgba(249, 115, 22, 0.45) !important;
+}
+
+.dark .dark-token-ip {
+  background-color: rgba(19, 78, 74, 0.45) !important;
+  color: #5EEAD4 !important;
+  border-color: rgba(20, 184, 166, 0.45) !important;
+}
+
+.dark .dark-token-card {
+  background-color: rgba(136, 19, 55, 0.45) !important;
+  color: #FDA4AF !important;
+  border-color: rgba(244, 63, 94, 0.45) !important;
+}
+
+/* Custom subtle scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #EDEDE9;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #D6CCC2;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #988B80;
+}
+
+.dark ::-webkit-scrollbar-track {
+  background: #292521;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: #5B5046;
+  border-radius: 3px;
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: #766C63;
+}
+
+/* Hide scrollbar utility */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
